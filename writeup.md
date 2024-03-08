@@ -188,7 +188,7 @@ Tabbing over to a virtual whiteboard, here was my thought process to solve this:
 
 Take a grid with size 4:
 
-<img src='images/empty_grid.png' width='40%'>
+<img src='empty_grid.png' width='40%'>
 
 After staring into these empty circles for a while, I started to see the simple pattern that would lead to an answer here.
 
@@ -196,7 +196,7 @@ After staring into these empty circles for a while, I started to see the simple 
 
 2. For a given start node, we can make a left diagonal with the starting node + every left child after it
 
-<img src='images/columns.png' width='40%'>
+<img src='columns.png' width='40%'>
 
 So for solving our problem of finding diagonals that can fit our word, here are the questions we need to answer:
   * ~How do we find diagonals?~ - We defined a diagonal above as our starting node + all children diagonally to one side.
@@ -205,28 +205,28 @@ So for solving our problem of finding diagonals that can fit our word, here are 
 
 Lets look at that last question. If we take an arbitrary node from our grid, how do we get the node down and to the right of it?
 
-<img src='images/arbitrary_selection.png' width='40%'>
+<img src='arbitrary_selection.png' width='40%'>
 
 Lets highlight the "right child" and label the rows and columns so we can look for a pattern
 
-<img src='images/arbitrary_selection_right_child.png' width='40%'>
+<img src='arbitrary_selection_right_child.png' width='40%'>
 
 We can see that our Node is in row 1, column 2. Looking at its right child, that sits in row 2, column 3. If that Node had a right child, it would be in row 3, column 4.
 
 The pattern here is simple. **For a node in Row x and column y, its right child will be in row x+1 and column y+1.**
 
-<img src='images/right_child_general.png' width='40%'>
+<img src='right_child_general.png' width='40%'>
 
 Now lets look at the left child of our node and see if we can figure out that pattern:
 
-<img src='images/arbitrary_selection_left_child.png' width='40%'>
+<img src='arbitrary_selection_left_child.png' width='40%'>
 
 We see our Node is still in row 1, column 2. Now our child is in row 2, column 1 though!
 If we look at that node's left child, we can see it sits in row 3, column 0.
 
 We can extract the general rule: **For a node in Row x and column y, its right child will be in row x+1 and column y-1.**
 
-<img src='images/children_general.png' width='40%'>
+<img src='children_general.png' width='40%'>
 
 Back to our list of questions:
 
@@ -236,11 +236,11 @@ Back to our list of questions:
 
 So now the only piece we're missing to be able to find every diagonal in the grid is **Which nodes do we start a diagonal from**? Intuitively, we can say that we should only start a diagonal from a node that sits on the edge of the grid.
 
-<img src='images/edge_highlighted.png' width='40%'>
+<img src='edge_highlighted.png' width='40%'>
 
 With a bit more thinking, we see that the bottom row actually can be omitted because there will never be a child in the row beneath, since there will *never* be a row underneath our final one. So the only valid starting positions for a diagonal in our grid are:
 
-<img src='images/diagonal_starts.png' width='40%'>
+<img src='diagonal_starts.png' width='40%'>
 
 -----
 
